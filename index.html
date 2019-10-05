@@ -18,6 +18,10 @@
 <body>
 <div style="position:absolute;left:10px;top:10px;">
 <div id="documentViewer" class="flexpaper_viewer" style="width:770px;height:500px"></div>
+<input type="text" id="swf_filename" value="1.swf">
+<button onclick='getElementById("demo").innerHTML=Date()+document.getElementById("swf_filename").value'>Button</button>
+<p id="demo"></p>
+<button onclick='setupFlexPaperView()'>Print</button>
 
 <script type="text/javascript">
     function getDocumentUrl(document){
@@ -26,10 +30,14 @@
 
     var startDocument = "Paper";
 
-    $('#documentViewer').FlexPaperViewer(
+    function setupFlexPaperView() {
+        var swf_filename = document.getElementById('swf_filename').value; //"1.swf"
+        console.log(swf_filename);
+
+        $('#documentViewer').FlexPaperViewer(
             { config : {
 
-                SWFFile : escape('upload_docs/1.swf'),
+                SWFFile : escape('upload_docs/'+swf_filename),
 
                 Scale : 0.6,
                 ZoomTransition : 'easeOut',
@@ -54,7 +62,10 @@
                 WMode : 'window',
                 localeChain: 'en_US'
             }}
-    );
+        );
+    }
+
+    
 </script>
 <div style="width:760px;margin-top:10px;padding-left:10px; padding-top:10px; padding-bottom:10px; font-family:Verdana;font-size:10pt;background-color:#EFEFEF; border:1px solid #999;-webkit-box-shadow: rgba(0, 0, 0, 0.246094) 0px 2px 4px 0px;font-family:'District Thin', helvetica, arial;font-weight:lighter;"><font style="font-size:15px;font-weight:bold">Notice</font><br/>You are viewing a document in FlexPaper using Adobe Flash. Consider purchasing a commercial license with support for <a href="http://flexpaper.devaldi.com/download.jsp?ref=FlexPaper">Adaptive UI </a> to maximize your browser coverage and reach devices such as the Apple iPad. <br/><br/>With <a href="http://flexpaper.devaldi.com/download.jsp?ref=FlexPaper">AdaptiveUI enabled</a>, the viewer adjust automatically to the visitors capabilities and supports rendering documents as flash, html4 and html5. The viewer gracefully degrades between all formats.<br/><br/>For more information on browser coverage please <a href="http://flexpaper.devaldi.com/docs_html_flash_html5.jsp?ref=FlexPaper">see our documentation</a>.</div>
 </div>
